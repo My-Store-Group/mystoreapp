@@ -212,7 +212,6 @@ const Details = ({ apps, darkMode }) => {
               <button
                 onClick={async () => {
                   try {
-                    // Mobile Redirect Fix: Fetch the file and download as blob
                     const response = await fetch(app.downloadUrl);
                     const blob = await response.blob();
                     const url = window.URL.createObjectURL(blob);
@@ -224,7 +223,6 @@ const Details = ({ apps, darkMode }) => {
                     link.remove();
                     window.URL.revokeObjectURL(url);
                   } catch (e) {
-                    // Fallback if fetch fails (CORS issue)
                     window.location.href = app.downloadUrl;
                   }
                 }}
@@ -232,6 +230,9 @@ const Details = ({ apps, darkMode }) => {
               >
                 <Download className="w-5 h-5" /> Download APK
               </button>
+              <p className="text-[10px] text-center font-bold opacity-40 px-2 leading-tight">
+                *Note: Chrome may show a "File might be harmful" warning. This is normal for all APKs outside Play Store. Our apps are verified & secure.
+              </p>
               <button onClick={handleShare} className={`w-full py-4 rounded-2xl font-bold flex items-center justify-center gap-3 border transition-all ${darkMode ? 'border-zinc-800 hover:bg-zinc-800' : 'border-zinc-200 hover:bg-zinc-50'}`}>
                 <Share2 className="w-5 h-5" /> Share
               </button>
