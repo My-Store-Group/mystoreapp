@@ -247,7 +247,7 @@ const App = () => {
              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">M</div>
              <p className="font-bold">My Store</p>
            </div>
-           <p className="text-gray-500 text-sm">© 2024 My Store. All rights reserved.</p>
+           <p className="text-gray-500 text-sm">© {new Date().getFullYear()} My Store. All rights reserved.</p>
            <div className="flex gap-6 text-sm font-semibold text-gray-600">
               <a href="#" className="hover:text-indigo-600">Terms</a>
               <a href="#" className="hover:text-indigo-600">Privacy</a>
