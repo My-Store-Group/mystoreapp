@@ -210,8 +210,24 @@ const Details = ({ apps, darkMode }) => {
             <h4 className="text-lg font-bold mb-6">Installation</h4>
             <div className="space-y-3">
               <button
-                onClick={() => {
-                  window.location.href = app.downloadUrl;
+                onClick={async () => {
+                  try {
+                    // Mobile Redirect Fix: Fetch the file and download as blob
+                    alert("Starting download... Please check your notification bar.");
+                    const response = await fetch(app.downloadUrl);
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', `${app.name.replace(/\s+/g, '_')}.apk`);
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                    window.URL.revokeObjectURL(url);
+                  } catch (e) {
+                    // Fallback if fetch fails (CORS issue)
+                    window.location.href = app.downloadUrl;
+                  }
                 }}
                 className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 transition-all active:scale-[0.98]"
               >
