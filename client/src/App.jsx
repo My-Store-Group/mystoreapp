@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route, useParams, Link, useNavigate } from 'react-router-dom';
-import { Download, Star, ExternalLink, ShieldCheck, Search, Sun, Moon, X, User, LogOut, LayoutGrid, CheckCircle, Globe, Github, Share2, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Download, Star, ExternalLink, ShieldCheck, Search, Sun, Moon, X, User, LogOut, LayoutGrid, CheckCircle, Globe, Github, Share2, ArrowLeft, ArrowRight, Info, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Constants ---
@@ -230,12 +230,26 @@ const Details = ({ apps, darkMode }) => {
               >
                 <Download className="w-5 h-5" /> Download APK
               </button>
-              <p className="text-xs text-center font-black opacity-70 px-2 leading-tight">
-                *Note: Chrome may show a "File might be harmful" warning. This is normal for all APKs outside Play Store.
-                <span className="text-green-600 inline-flex items-center gap-1 ml-1">
-                  <CheckCircle className="w-3.5 h-3.5" /> Verified & Secure
-                </span>
-              </p>
+              <div className="flex flex-col items-center gap-3 mt-4 px-2">
+                <p className="text-[10px] text-center font-bold opacity-70 leading-relaxed flex flex-wrap items-center justify-center gap-x-1">
+                  <span className="inline-flex items-center gap-1 bg-zinc-500/10 px-1.5 py-0.5 rounded text-[9px] uppercase tracking-tighter"><Info className="w-3 h-3" /> Note</span>
+                  <span>:</span>
+                  <img src="https://www.google.com/chrome/static/images/chrome-logo.svg" className="w-3 h-3" alt="Chrome" />
+                  <span className="font-black">Chrome</span>
+                  <span>may show a</span>
+                  <span className="inline-flex items-center gap-0.5 text-yellow-600 bg-yellow-500/10 px-1 rounded"><AlertTriangle className="w-3.5 h-3.5" /> warning</span>
+                  <span>. This is normal for all APKs outside</span>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" className="w-3 h-3" alt="Play Store" />
+                  <span className="font-black">Play Store</span>
+                  <span>.</span>
+                </p>
+                <div className="flex items-center gap-2.5 bg-green-500/10 px-4 py-2 rounded-2xl border border-green-500/20">
+                  <div className="w-6 h-6 bg-indigo-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-indigo-600/20">
+                    <LayoutGrid className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-xs font-black text-green-600 uppercase tracking-widest">My Store Verified</span>
+                </div>
+              </div>
               <button onClick={handleShare} className={`w-full py-4 rounded-2xl font-bold flex items-center justify-center gap-3 border transition-all ${darkMode ? 'border-zinc-800 hover:bg-zinc-800' : 'border-zinc-200 hover:bg-zinc-50'}`}>
                 <Share2 className="w-5 h-5" /> Share
               </button>
